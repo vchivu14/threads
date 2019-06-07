@@ -17,7 +17,7 @@ Python, Flask, HTML, CSS, SQL database and Git.
 1. Download and install the latest version of [Python](https://www.python.org/downloads/).
 2. Download and install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 3. Download and install [Git](https://git-scm.com/) - an open source version control system.
-4. Navigate in your bash interface and cd to this folder and run the following commands:
+4. Clone this repo and afterwards Navigate in your bash interface and cd to this folder and run the following commands:
 
 - `vagrant up` to start the VirtualMachine
 - `vagrant ssh` to log into the VirtualMachine
