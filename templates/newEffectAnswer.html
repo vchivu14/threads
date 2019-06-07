@@ -1,0 +1,26 @@
+<html>
+<body>
+
+<h1>New Idea</h1>
+<form action="{{url_for('newEffectAnswer', cause_id=cause_id)}}" method='POST'>
+<dl>
+    <dt>Nickname:</dt>
+        <dd><input type="text", size='20', name='name' required></dd>
+    <dt>Solution:</dt>
+        <dd><textarea name='solution' cols="60" rows='10' wrap="soft" required></textarea></dd>
+    <dt>Importance:</dt>
+        <dd><input type="radio" name="importance" value="high" checked>High</dd>
+        <dd><input type="radio" name="importance" value="average">Average</dd>
+        <dd><input type="radio" name="importance" value="low">Low</dd>
+    <dt>Area:</dt>
+        <dd><input type="radio" name="area" value="local" checked>Local</dd>
+        <dd><input type="radio" name="area" value="nationwide">Nationwide</dd>
+        <dd><input type="radio" name="area" value="global">Global</dd>
+</dl>  
+</br>
+<input type='submit' value='Post'>
+<input type="reset">
+</form>
+<a href = "{{url_for('showCause', cause_id=cause_id)}}">Cancel</a>
+</body>
+</html>

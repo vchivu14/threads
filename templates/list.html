@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles1.css')}}">
+    </head>
+<body>
+
+<h1>{{cause.name}}</h1>
+
+<a href = "{{url_for('showHomePage') }}">Home Page</a>
+|
+<a href = "{{url_for('newEffectAnswer', cause_id = cause.id) }}">Give it a try</a>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li><strong>{{message}}</strong></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% for i in answers %}
+</br>
+<div>
+
+<p>Nickname: {{i.name}}</p>
+
+<p>Idea: {{i.solution}}</p>
+
+<p>Importance: {{i.importance}}</p>
+
+<p>Area: {{i.area}}</p>
+
+
+<a href="{{url_for('editEffectAnswer', cause_id = cause.id, answer_id = i.id)}}">Edit your answer</a>
+</br>
+<a href="{{url_for('deleteEffectAnswer', cause_id = cause.id, answer_id=i.id)}}">Delete</a>
+</div>
+
+{% endfor %}
+
+</body>
+
+</html>
