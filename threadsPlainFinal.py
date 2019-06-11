@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, make_response
+from flask import Flask, render_template, request, redirect, url_for, flash, \
+                jsonify, make_response
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database2_setup import Base, EffectAnswer, Cause, User
@@ -33,22 +34,25 @@ def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
-    return render_template('login.html', STATE=state)
+    return render_template('login22.html', STATE=state)
 
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
-    # Validate state token
+    """Validate state token.
+    """
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Obtain authorization code
+    """Obtain authorization code.
+    """
     code = request.data
 
     try:
-        # Upgrade the authorization code into a credentials object
+        """Upgrade the authorization code into a credentials object.
+        """
         oauth_flow = flow_from_clientsecrets('clients_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
@@ -58,20 +62,23 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Check that the access token is valid.
+    """Check that the access token is valid.
+    """
     access_token = credentials.access_token
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
     h = httplib2.Http()
     result = json.loads(h.request(url, 'GET')[1])
 
-    # If there was an error in the access token info, abort.
+    """If there was an error in the access token info, abort.
+    """
     if result.get('error') is not None:
         response = make_response(json.dumps(result.get('error')), 500)
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Verify that the access token is used for the intended user.
+    """Verify that the access token is used for the intended user.
+    """
     gplus_id = credentials.id_token['sub']
     if result['user_id'] != gplus_id:
         response = make_response(
@@ -79,7 +86,8 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Verify that the access token is valid for this app.
+    """Verify that the access token is valid for this app.
+    """
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
@@ -91,17 +99,19 @@ def gconnect():
     stored_gplus_id = login_session.get('gplus_id')
 
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(json.dumps('Current user is already'
+                                            'connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # Store the access token in the session for later use.
-    # Or just access_token
+    """Store the access token in the session for later use.
+    Or just access_token.
+    """
     login_session['access_token'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
 
-    # Get user info
+    """Get user info.
+    """
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
     params = {'access_token': credentials.access_token, 'alt': 'json'}
     answer = requests.get(userinfo_url, params=params)
@@ -112,10 +122,12 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
-    # # Add provider to Login session
+    """Add provider to Login session.
+    """
     login_session['provider'] = 'google'
 
-    # See if user exists, if it doesn't make a new one
+    """See if user exists, if it doesn't make a new one.
+    """
     user_id = getUserID(data['email'])
     if not user_id:
         user_id = createUser(login_session)
@@ -127,7 +139,11 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 300px; \
+                            height: 300px; \
+                            border-radius: 150px; \
+                            webkit-border-radius: 150px; \
+                            moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     print("done!")
     return output
@@ -208,7 +224,7 @@ def showAnswerJSON(cause_id, answer_id):
 @app.route('/threads/')
 def showHomePage():
     causes = session.query(Cause).order_by(Cause.name)
-    return render_template('threads.html', causes=causes)
+    return render_template('threads2.html', causes=causes)
 
 
 @app.route('/threads/new/', methods=['GET', 'POST'])
@@ -234,7 +250,9 @@ def editCause(cause_id):
     if 'username' not in login_session:
         return redirect('/login')
     if editedcause.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this cause. Please create your own post.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() \
+        {alert('You are not authorized to edit this cause. \
+        Please create your own post.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedcause.name = request.form['cause']
@@ -251,7 +269,9 @@ def deleteCause(cause_id):
     if 'username' not in login_session:
         return redirect('/login')
     if causeToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this cause. Please create your own post.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() \
+        {alert('You are not authorized to delete this cause. \
+        Please create your own post.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(causeToDelete)
         flash('%s Successfully Deleted' % causeToDelete.name)
@@ -267,7 +287,8 @@ def showCause(cause_id):
     creator = getUserInfo(cause.user_id)
     answers = session.query(EffectAnswer).filter_by(
         cause_id=cause_id).all()
-    return render_template('list.html', cause=cause, answers=answers, cause_id=cause.id, creator=creator)
+    return render_template('list2.html', cause=cause, answers=answers,
+                           cause_id=cause.id, creator=creator)
 
 
 @app.route('/threads/<int:cause_id>/answers/new/', methods=['GET', 'POST'])
@@ -276,8 +297,12 @@ def newEffectAnswer(cause_id):
         return redirect('/login')
     cause = session.query(Cause).filter_by(id=cause_id).one()
     if request.method == 'POST':
-        newAnswer = EffectAnswer(name=request.form['name'], solution=request.form['solution'],
-                                 importance=request.form['importance'], area=request.form['area'], cause_id=cause_id, user_id=cause.user_id)
+        newAnswer = EffectAnswer(
+            name=request.form['name'],
+            solution=request.form['solution'],
+            importance=request.form['importance'],
+            area=request.form['area'],
+            cause_id=cause_id, user_id=cause.user_id)
         session.add(newAnswer)
         session.commit()
         flash("New Solution Created!")
@@ -286,14 +311,17 @@ def newEffectAnswer(cause_id):
         return render_template('newEffectAnswer.html', cause_id=cause_id)
 
 
-@app.route('/threads/<int:cause_id>/answers/<int:answer_id>/edit', methods=['GET', 'POST'])
+@app.route('/threads/<int:cause_id>/answers/<int:answer_id>/edit',
+           methods=['GET', 'POST'])
 def editEffectAnswer(cause_id, answer_id):
     if 'username' not in login_session:
         return redirect('/login')
     cause = session.query(Cause).filter_by(id=cause_id).one()
     editedAnswer = session.query(EffectAnswer).filter_by(id=answer_id).one()
     if login_session['user_id'] != cause.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit this idea. Please write your own idea.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() \
+        {alert('You are not authorized to edit this idea. \
+        Please write your own idea.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         if request.form['name']:
             editedAnswer.name = request.form['name']
@@ -308,17 +336,21 @@ def editEffectAnswer(cause_id, answer_id):
         flash("solution has been changed.")
         return redirect(url_for('showCause', cause_id=cause_id))
     else:
-        return render_template('editEffectAnswer.html', cause_id=cause_id, answer_id=answer_id, item=editedAnswer)
+        return render_template('editEffectAnswer.html', cause_id=cause_id,
+                               answer_id=answer_id, item=editedAnswer)
 
 
-@app.route('/threads/<int:cause_id>/answers/<int:answer_id>/delete', methods=['GET', 'POST'])
+@app.route('/threads/<int:cause_id>/answers/<int:answer_id>/delete',
+           methods=['GET', 'POST'])
 def deleteEffectAnswer(cause_id, answer_id):
     if 'username' not in login_session:
         return redirect('/login')
     answerToDelete = session.query(EffectAnswer).filter_by(id=answer_id).one()
     cause = session.query(Cause).filter_by(id=cause_id).one()
     if login_session['user_id'] != cause.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to delete this idea. Please write your own idea.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() \
+        {alert('You are not authorized to delete this idea. \
+        Please write your own idea.');}</script><body onload='myFunction()''>"
     if request.method == 'POST':
         session.delete(answerToDelete)
         session.commit()
