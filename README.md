@@ -17,7 +17,7 @@ Python, Flask, HTML, CSS, SQL database and Git.
 1. Download and install the latest version of [Python](https://www.python.org/downloads/).
 2. Download and install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 3. Download and install [Git](https://git-scm.com/) - an open source version control system.
-4. Clone this repo and afterwards Navigate in your bash interface and cd to this folder and run the following commands:
+4. Clone this repo and navigate in your bash interface and cd to this folder and run the following commands:
 
 - `vagrant up` to start the VirtualMachine
 - `vagrant ssh` to log into the VirtualMachine
@@ -34,68 +34,68 @@ Python, Flask, HTML, CSS, SQL database and Git.
 http://localhost:5000/threads/JSON - will fetch all the Causes listed
 
 {
-"causes": [
-{
-"id": 4,
-"name": "Single parents"
-},
-{
-"id": 1,
-"name": "The Environment problem"
-},
-{
-"id": 3,
-"name": "Unpaved roads"
-},
-{
-"id": 2,
-"name": "kids with no help"
-}
-]
+  "causes": [
+    {
+      "id": 4, 
+      "name": "Single parents"
+    }, 
+    {
+      "id": 1, 
+      "name": "The Environment problem"
+    }, 
+    {
+      "id": 3, 
+      "name": "Unpaved roads"
+    }, 
+    {
+      "id": 2, 
+      "name": "kids with no help"
+    }
+  ]
 }
 
 http://localhost:5000/threads/1/answers/JSON/ - will fetch answers for each cause
 
 {
-"EffectAnswer": [
-{
-"area": "global",
-"id": 1,
-"importance": "high",
-"name": "silly",
-"solution": "drive less"
-},
-{
-"area": "global",
-"id": 2,
-"importance": "high",
-"name": "gauge",
-"solution": "plant more trees"
-},
-{
-"area": "local",
-"id": 6,
-"importance": "high",
-"name": "jack",
-"solution": "ggg"
-}
-]
+  "EffectAnswer": [
+    {
+      "area": "global", 
+      "id": 1, 
+      "importance": "high", 
+      "name": "silly", 
+      "solution": "drive less"
+    }, 
+    {
+      "area": "global", 
+      "id": 2, 
+      "importance": "high", 
+      "name": "gauge", 
+      "solution": "plant more trees"
+    }, 
+    {
+      "area": "local", 
+      "id": 6, 
+      "importance": "high", 
+      "name": "jack", 
+      "solution": "ggg"
+    }
+  ]
 }
 
 http://localhost:5000/threads/1/answers/1/JSON/ - will fetch one answer at a time for each cause
 
 {
-"answer": {
-"area": "global",
-"id": 1,
-"importance": "high",
-"name": "silly",
-"solution": "drive less"
-},
-"cause": {
-"id": 1,
-"name": "The Environment problem"
-}
+  "answer": {
+    "area": "global", 
+    "id": 1, 
+    "importance": "high", 
+    "name": "silly", 
+    "solution": "drive less"
+  }, 
+  "cause": {
+    "id": 1, 
+    "name": "The Environment problem"
+  }
 }
 
 ## Improvements needed for now:
