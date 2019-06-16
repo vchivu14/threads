@@ -8,7 +8,6 @@ from flask import session as login_session
 from oauth2client import client
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
-from apiclient import discovery
 import random
 import string
 import httplib2
@@ -287,7 +286,7 @@ def showCause(cause_id):
     creator = getUserInfo(cause.user_id)
     answers = session.query(EffectAnswer).filter_by(
         cause_id=cause_id).all()
-    return render_template('list2.html', cause=cause, answers=answers,
+    return render_template('list.html', cause=cause, answers=answers,
                            cause_id=cause.id, creator=creator)
 
 
