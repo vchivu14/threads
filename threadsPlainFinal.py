@@ -224,7 +224,7 @@ def showAnswerJSON(cause_id, answer_id):
 @app.route('/threads/')
 def showHomePage():
     causes = session.query(Cause).order_by(Cause.name)
-    return render_template('threads2.html', causes=causes)
+    return render_template('threads.html', causes=causes)
 
 
 @app.route('/threads/new/', methods=['GET', 'POST'])
