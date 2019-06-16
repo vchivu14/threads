@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <h2>Change your answer</h2>
+    <form
+      action="{{url_for('editEffectAnswer', cause_id=cause_id, answer_id=item.id)}}"
+      method="POST"
+    >
+      <dl>
+        <dt>Nickname:</dt>
+        <dd><input type="text" , size="20" , name="name" , required /></dd>
+        <dt>Solution:</dt>
+        <dd>
+          <textarea
+            name="solution"
+            cols="60"
+            rows="10"
+            wrap="soft"
+            required
+          ></textarea>
+        </dd>
+        <dt>Importance:</dt>
+        <dd>
+          <input type="radio" name="importance" value="high" checked />High
+        </dd>
+        <dd><input type="radio" name="importance" value="average" />Average</dd>
+        <dd><input type="radio" name="importance" value="low" />Low</dd>
+        <dt>Area:</dt>
+        <dd><input type="radio" name="area" value="local" checked />Local</dd>
+        <dd><input type="radio" name="area" value="nationwide" />Nationwide</dd>
+        <dd><input type="radio" name="area" value="global" />Global</dd>
+      </dl>
+      <input type="submit" value="Post" />
+      <input type="reset" />
+    </form>
+
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>
+        <strong>{{ message }}</strong>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+  </body>
+</html>

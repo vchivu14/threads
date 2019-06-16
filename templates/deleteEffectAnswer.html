@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h1>Are you sure you want to delete, {{ item.name }}?</h1>
+    <form
+      action="{{url_for('deleteEffectAnswer', cause_id=item.cause_id, answer_id=item.id)}}"
+      method="POST"
+    >
+      <input type="submit" , value="Delete" />
+    </form>
+    <a href="{{url_for('showCause', cause_id=item.cause_id)}}">Cancel</a>
+
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>
+        <strong>{{ message }}</strong>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+  </body>
+</html>

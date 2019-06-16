@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles1.css')}}">
+    </head>
+<body>
+
+<h1>My New Web Connection Threading </h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li><strong>{{message}}</strong></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<a href = "{{url_for('showLogin')}}">Login</a>
+|
+<a href = "{{url_for('gdisconnect')}}">Logout</a>
+</br></br>
+
+<a href = "{{url_for('newCause')}}">New Post</a>
+
+{% for cause in causes %}
+
+<div>
+<p>Cause: {{cause.name}} | <a href = "{{url_for('showCause', cause_id = cause.id) }}">Go there</a> 
+</br>
+<a href = "{{url_for('deleteCause', cause_id = cause.id) }}">Delete</a>
+|
+<a href = "{{url_for('editCause', cause_id = cause.id) }}">Edit</a>
+</p>
+
+{% endfor %}
+
+
+</body>
+</html>

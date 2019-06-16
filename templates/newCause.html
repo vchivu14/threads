@@ -1,0 +1,16 @@
+<html>
+<body>
+
+<h1>New Idea</h1>
+<form action="{{url_for('newCause')}}" method='POST'>
+<dl>
+    <dt>Cause:</dt>
+        <dd><input type="text", size='80', name='cause' required></dd> 
+</dl>  
+</br>
+<input type='submit' value='Post'>
+<input type="reset">
+</form>
+<a href = "{{url_for('showHomePage')}}">Cancel</a>
+</body>
+</html>

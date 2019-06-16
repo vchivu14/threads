@@ -1,0 +1,68 @@
+body {
+  font-family: sans-serif;
+  background-image: url("https://static1.squarespace.com/static/55b5a1f0e4b04f6601fee9e0/55e37d0ce4b04175f47eb327/56c9fe73f055e953240f8e59/1456078458481/rocks.jpg?format=2500w");
+  background-size: 1300px 600px;
+}
+h1,
+h2,
+h3,
+h4 {
+  color: #cccccc;
+}
+h1,
+h2 {
+  font-family: "Georgia", serif;
+  margin: 0;
+}
+h1 {
+  border-bottom: 2px solid #eee;
+}
+h2 {
+  font-size: 1.2em;
+}
+
+p {
+  color: #cccccc;
+  size: 2cm;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffcc;
+  font-size: 1.5em;
+}
+
+.pane {
+  position: absolute;
+  left: 25%;
+  border: 2px solid;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 5px;
+  border-color: #999999;
+  background-color: #333333;
+}
+.header {
+  left: 50%;
+  text-align: center;
+}
+.name {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+.solution {
+}
+.importance {
+  text-align: right;
+  width: 50%;
+  float: right;
+}
+.editdeletepane {
+  size: 2cm;
+  color: rgb(241, 14, 109);
+}
+
+.flash {
+  background: #cee5f5;
+}
