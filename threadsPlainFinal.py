@@ -17,7 +17,7 @@ import json
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(
-    open('clients_secrets.json', 'r').read())['web']['client_id']
+    open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "threads-1557767301046"
 
 engine = create_engine('sqlite:///causeandeffectwithusers.db',
@@ -52,7 +52,7 @@ def gconnect():
     try:
         """Upgrade the authorization code into a credentials object.
         """
-        oauth_flow = flow_from_clientsecrets('clients_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
