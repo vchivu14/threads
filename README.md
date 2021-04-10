@@ -2,7 +2,7 @@
 
 ## Project Overview:
 
-This project is part of the [Udacity's Full Stack Web Developer Nanodegree](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)
+This project is part of the [Udacity's Full Stack Web Developer Nanodegree].(https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)
 We will build an application that will provide user authentication with Google Oauth. This application should include the following features to their users:
 Create, Read, Update and Delete data. This application will have it's own database and will run a dynamic website.
 
