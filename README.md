@@ -29,7 +29,7 @@ In this project we will use:
 - `git clone https://github.com/vchivu14/threads.git`
 - `vagrant up` to start the VirtualMachine
 - `vagrant ssh` to log into the VirtualMachine
-- `cd /vagrant` to change to your directory
+- `cd /vagrant`
 
 5. Run the application with:
 
