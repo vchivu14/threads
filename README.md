@@ -11,7 +11,7 @@ Create, Read, Update and Delete posts. This application will have it's own datab
 This application we're building will allow authenticated users to post a cause they believe needs attention from the public authorities and then let users come and respond with possible solutions. Users will be the only ones in charge of their content with the possibility to update and delete their posts. The website is open for reading to anyone but you must login to post an idea or respond to one.
 In this project we will use:
 <ol>
-  <li>Python3</li>
+  <li>Python</li>
   <li>Flask framework</li>
   <li>HTML, CSS, JavaScript</li>
   <li>sqlite database</li>
