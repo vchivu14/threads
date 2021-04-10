@@ -17,6 +17,7 @@ In this project we will use:
   <li>sqlite database</li>
   <li>VirtualBox to hold our server application</li>
   <li>Other tools: Git, Vagrant</li>
+ </ol>
 
 ## Setting up the project
 
