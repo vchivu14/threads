@@ -8,7 +8,7 @@ Create, Read, Update and Delete posts. This application will have it's own datab
 
 ## Project Description
 
-This application we're building will allow authenticated users to post a cause they believe needs attention from the public authorities and then let users come and respond with possible solutions. Users will be the only ones in charge of their content with the possibility to update and delete their posts. The website is open for reading to anyone but you must login to post an idea or respond to one.
+This application we're building will allow authenticated users to post a CAUSE they believe needs attention from the public authorities and then let users come and respond with possible SOLUTIONS. Users will be the only ones in charge of their content with the possibility to update and delete their posts. The website is open for reading to anyone but you must login to post a cause or respond to one.
 In this project we will use:
 <ol>
   <li>Python</li>
@@ -39,11 +39,11 @@ In this project we will use:
 
 ## JSON Endpoints
 
-http://localhost:5000/threads/JSON - will fetch all the Causes listed
+http://localhost:5000/threads/JSON - will fetch all the posts listed
 
-http://localhost:5000/threads/1/answers/JSON/ - will fetch answers for each cause
+http://localhost:5000/threads/1/answers/JSON/ - will fetch all the answers for a given post
 
-http://localhost:5000/threads/1/answers/1/JSON/ - will fetch one answer at a time for each cause
+http://localhost:5000/threads/1/answers/1/JSON/ - will fetch one answer at a time for each post
 
 ## Improvements needed:
 - Style and layout for views
