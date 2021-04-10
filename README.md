@@ -8,9 +8,15 @@ Create, Read, Update and Delete posts. This application will have it's own datab
 
 ## Project Description
 
-This application we're building will allow authenticated users to post a cause they believe needs attention from the public and then let users come and respond with possible solutions. Users will be the only ones in charge of their content with the possibility to update and delete their posts. The website is open for reading to anyone but you must login to at least post an idea or respond to one.
+This application we're building will allow authenticated users to post a cause they believe needs attention from the public authorities and then let users come and respond with possible solutions. Users will be the only ones in charge of their content with the possibility to update and delete their posts. The website is open for reading to anyone but you must login to post an idea or respond to one.
 In this project we will use:
-Python, Flask, HTML, CSS, SQL database and Git.
+<ol>
+  <li>Python3</li>
+  <li>Flask framework</li>
+  <li>HTML, CSS, JavaScript</li>
+  <li>sqlite database</li>
+  <li>VirtualBox to hold our server application</li>
+  <li>Other tools: Git, Vagrant</li>
 
 ## Setting up the project
 
@@ -33,72 +39,10 @@ Python, Flask, HTML, CSS, SQL database and Git.
 
 http://localhost:5000/threads/JSON - will fetch all the Causes listed
 
-{
-  "causes": [
-    {
-      "id": 4, 
-      "name": "Single parents"
-    }, 
-    {
-      "id": 1, 
-      "name": "The Environment problem"
-    }, 
-    {
-      "id": 3, 
-      "name": "Unpaved roads"
-    }, 
-    {
-      "id": 2, 
-      "name": "kids with no help"
-    }
-  ]
-}
-
 http://localhost:5000/threads/1/answers/JSON/ - will fetch answers for each cause
-
-{
-  "EffectAnswer": [
-    {
-      "area": "global", 
-      "id": 1, 
-      "importance": "high", 
-      "name": "silly", 
-      "solution": "drive less"
-    }, 
-    {
-      "area": "global", 
-      "id": 2, 
-      "importance": "high", 
-      "name": "gauge", 
-      "solution": "plant more trees"
-    }, 
-    {
-      "area": "local", 
-      "id": 6, 
-      "importance": "high", 
-      "name": "jack", 
-      "solution": "ggg"
-    }
-  ]
-}
 
 http://localhost:5000/threads/1/answers/1/JSON/ - will fetch one answer at a time for each cause
 
-{
-  "answer": {
-    "area": "global", 
-    "id": 1, 
-    "importance": "high", 
-    "name": "silly", 
-    "solution": "drive less"
-  }, 
-  "cause": {
-    "id": 1, 
-    "name": "The Environment problem"
-  }
-}
-
-## Improvements needed for now:
-
-- Style and layout for better allignment
+## Improvements needed:
+- Style and layout for views
 - Add more features like Support and Admin for security
