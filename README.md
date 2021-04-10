@@ -26,7 +26,7 @@ In this project we will use:
 3. Download and install [Git](https://git-scm.com/) - an open source version control system.
 4. Clone this repo and navigate in your bash interface and cd to this folder and run the following commands:
 
-- git clone https://github.com/vchivu14/threads.git
+- `git clone https://github.com/vchivu14/threads.git`
 - `vagrant up` to start the VirtualMachine
 - `vagrant ssh` to log into the VirtualMachine
 - `cd /vagrant` to change to your directory
