@@ -1,4 +1,4 @@
-# thread
+# threads
 
 ## Project Overview:
 
